@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimeDrillSpeedMultiplier", "RimeDrillSpeedMultiplier.csproj", "{5667D0D5-9776-479C-9201-D4BD47020434}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5667D0D5-9776-479C-9201-D4BD47020434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5667D0D5-9776-479C-9201-D4BD47020434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5667D0D5-9776-479C-9201-D4BD47020434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5667D0D5-9776-479C-9201-D4BD47020434}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51DC0BF4-13B7-4F84-85DC-C9D3B1A7D510}
+	EndGlobalSection
+EndGlobal
