@@ -10,5 +10,6 @@ namespace RimeDrillSpeedMultiplier.HarmonyInit
     public static class ModInfo
     {
         public static Harmony modHarmony;
+        public static readonly string HarmonyID = "Luminiel.RimeDrillSpeedMultiplier";
     }
 }

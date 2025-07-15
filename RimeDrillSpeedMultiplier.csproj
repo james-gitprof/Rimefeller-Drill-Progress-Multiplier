@@ -54,12 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrillModInit.cs" />
-    <Compile Include="HarmonyInit\ModInfo.cs" />
-    <Compile Include="ModLogMessages.cs" />
-    <Compile Include="PatchManager.cs" />
+    <Compile Include="HarmonyRelated\ModInfo.cs" />
+    <Compile Include="Utils\ModLogMessages.cs" />
+    <Compile Include="Utils\PatchManager.cs" />
     <Compile Include="Patch\DrillSpeedPatcher.cs" />
     <Compile Include="Settings\DrillSpeedSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\UIInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -12,7 +12,6 @@ namespace RimeDrillSpeedMultiplier.Patch
     [HarmonyPatch(typeof(CompOilDerrick), nameof(CompOilDerrick.Drill), new Type[] { typeof(float)})]
     public class DrillSpeedPatcher
     {
-
         static void DrillPatchPostfix(float prog, CompOilDerrick __instance)
         {
             float multiplierSetting = DrillModInit.settings.drillSpeedMultiplier;

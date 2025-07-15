@@ -10,6 +10,7 @@ using RimeDrillSpeedMultiplier.Patch;
 using Rimefeller;
 using System.Reflection;
 using RimeDrillSpeedMultiplier.HarmonyInit;
+using RimeDrillSpeedMultiplier.Utils;
 
 namespace RimeDrillSpeedMultiplier
 {
@@ -19,15 +20,13 @@ namespace RimeDrillSpeedMultiplier
         
         public DrillModInit(ModContentPack content) : base(content)
         {
-            ModInfo.modHarmony = new Harmony("Luminiel.RimeDrillSpeedMultiplier");
+            ModInfo.modHarmony = new Harmony(ModInfo.HarmonyID);
             settings = this.GetSettings<DrillSpeedSettings>();
-            Log.Message("Drill speed multiplier mod is primed.");
+            Log.Message(ModLogMessages.MESSAGE_INIT);
             if (settings.enableDrillConfiguration)
             {
-                Log.Message("[Rimefeller Drill Speed Multiplier] Added multiplier on supervising drill work");
-                //harmony.Patch(typeof(CompOilDerrick).GetMethod("Drill"), prefix: new HarmonyMethod(typeof(DrillSpeedPatcher).GetMethod("Prefix")));
-                MethodInfo patch = AccessTools.Method(typeof(DrillSpeedPatcher), "DrillPatchPostfix");
-                ModInfo.modHarmony.Patch(AccessTools.Method(typeof(CompOilDerrick), "Drill", new Type[] {typeof(float)}), new HarmonyMethod(patch));
+                Log.Message(ModLogMessages.MESSAGE_PATCH_ACTIVE);
+                PatchManager.ApplyPatch();
             }
         }
 
@@ -35,8 +34,8 @@ namespace RimeDrillSpeedMultiplier
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("Enable drill speed multiplier", ref settings.enableDrillConfiguration, "Whether the mod should add a multiplier on supervising drill work");
-            listingStandard.Label("Drill speed multiplier:");
+            listingStandard.CheckboxLabeled(UIInfo.ENABLE_CHECKBOX_LABEL, ref settings.enableDrillConfiguration, UIInfo.ENABLE_CHECKBOX_TOOLTIP_TEXT);
+            listingStandard.Label(UIInfo.SLIDER_TEXT);
             settings.drillSpeedMultiplier = (float) Math.Floor(listingStandard.SliderLabeled($"{settings.drillSpeedMultiplier}%", settings.drillSpeedMultiplier, 100f, 1000f));
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
@@ -45,6 +44,34 @@ namespace RimeDrillSpeedMultiplier
         public override void WriteSettings()
         {
             base.WriteSettings();
+
+            if (settings.enableDrillConfiguration == true)
+            {
+                if (settings.previousIsDrillConfigEnabled == true)
+                {
+                    Log.Message(ModLogMessages.MESSAGE_PATCH_ALREADY_ACTIVE);
+                } else
+                {
+                    Log.Message(ModLogMessages.MESSAGE_PATCH_ACTIVE);
+                    PatchManager.ApplyPatch();
+                }
+
+            }
+
+            if (settings.enableDrillConfiguration == false)
+            {
+                if (settings.previousIsDrillConfigEnabled == false)
+                {
+                    Log.Message(ModLogMessages.MESSAGE_PATCH_ALREADY_INACTIVE);
+                } else
+                {
+                    Log.Message(ModLogMessages.MESSAGE_PATCH_INACTIVE);
+                    PatchManager.WithdrawPatch();
+                }
+             
+            }
+
+            settings.previousIsDrillConfigEnabled = settings.enableDrillConfiguration;
         }
 
         public override string SettingsCategory()
