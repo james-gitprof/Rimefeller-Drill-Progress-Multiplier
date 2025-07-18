@@ -36,7 +36,7 @@ namespace RimeDrillSpeedMultiplier
             modUI.Begin(inRect);
             modUI.CheckboxLabeled(UIInfo.ENABLE_CHECKBOX_LABEL, ref settings.enableDrillConfiguration, UIInfo.ENABLE_CHECKBOX_TOOLTIP_TEXT);
             modUI.GapLine();
-            modUI.LabelDouble("Drill speed multiplier", $"{settings.drillSpeedMultiplier}");
+            modUI.LabelDouble("Drill speed multiplier", $"{settings.drillSpeedMultiplier}%");
             settings.drillSpeedMultiplier = (float) Math.Floor(modUI.Slider(settings.drillSpeedMultiplier, 100f, 1000f));
             modUI.End();
             base.DoSettingsWindowContents(inRect);
