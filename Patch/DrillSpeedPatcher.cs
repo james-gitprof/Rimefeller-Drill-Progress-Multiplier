@@ -16,6 +16,7 @@ namespace RimeDrillSpeedMultiplier.Patch
         {
             float multiplierSetting = DrillModInit.settings.drillSpeedMultiplier;
             float decimalMultiplier = multiplierSetting / 100;
+            decimalMultiplier = decimalMultiplier == 1 ? 0 : decimalMultiplier;
             float newProg =  (float) (__instance.DrillTicks + Math.Floor(__instance.DrillTicks * decimalMultiplier));
             __instance.DrillTicks = newProg;
         }

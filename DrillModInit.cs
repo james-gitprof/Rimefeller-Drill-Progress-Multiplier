@@ -32,12 +32,13 @@ namespace RimeDrillSpeedMultiplier
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Listing_Standard listingStandard = new Listing_Standard();
-            listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled(UIInfo.ENABLE_CHECKBOX_LABEL, ref settings.enableDrillConfiguration, UIInfo.ENABLE_CHECKBOX_TOOLTIP_TEXT);
-            listingStandard.Label(UIInfo.SLIDER_TEXT);
-            settings.drillSpeedMultiplier = (float) Math.Floor(listingStandard.SliderLabeled($"{settings.drillSpeedMultiplier}%", settings.drillSpeedMultiplier, 100f, 1000f));
-            listingStandard.End();
+            Listing_Standard modUI = new Listing_Standard();
+            modUI.Begin(inRect);
+            modUI.CheckboxLabeled(UIInfo.ENABLE_CHECKBOX_LABEL, ref settings.enableDrillConfiguration, UIInfo.ENABLE_CHECKBOX_TOOLTIP_TEXT);
+            modUI.GapLine();
+            modUI.LabelDouble("Drill speed multiplier", $"{settings.drillSpeedMultiplier}");
+            settings.drillSpeedMultiplier = (float) Math.Floor(modUI.Slider(settings.drillSpeedMultiplier, 100f, 1000f));
+            modUI.End();
             base.DoSettingsWindowContents(inRect);
         }
 
@@ -60,7 +61,7 @@ namespace RimeDrillSpeedMultiplier
 
         public override string SettingsCategory()
         {
-            return "Rimefeller Drill Speed Multiplier";
+            return UIInfo.WINDOW_TITLE;
         }
     }
 }
