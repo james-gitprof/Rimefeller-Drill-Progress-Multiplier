@@ -10,14 +10,23 @@ namespace RimeDrillSpeedMultiplier
 
     public class DrillSpeedSettings : ModSettings
     {
-        public bool enableDrillConfiguration = false;
+        public bool enableDrillConfiguration = true;
+        public bool consistentDrillConfiguration = true;
+        public float consistentSpeedBaseFactor = 1f;
         public float drillSpeedMultiplier = 100f; // In percentage
+        public bool previousEnabledDrillConfig = true;
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref enableDrillConfiguration, "enableDrillConfiguration");
-            Scribe_Values.Look(ref drillSpeedMultiplier, "drillSpeedMultipliter");
+            Scribe_Values.Look(ref enableDrillConfiguration, "enableDrillConfiguration", defaultValue: true);
+            Scribe_Values.Look(ref drillSpeedMultiplier, "drillSpeedMultiplier", defaultValue: 100f);
+            Scribe_Values.Look(ref consistentDrillConfiguration, "consistentDrillConfiguration", defaultValue: true);
+            Scribe_Values.Look(ref consistentSpeedBaseFactor, "consistentSpeedBaseFactor", defaultValue: 1f);
             base.ExposeData();
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                previousEnabledDrillConfig = enableDrillConfiguration;
+            }
         }
     }
 }

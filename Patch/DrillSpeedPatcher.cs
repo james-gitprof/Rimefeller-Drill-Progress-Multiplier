@@ -14,10 +14,18 @@ namespace RimeDrillSpeedMultiplier.Patch
     {
         static void DrillPatchPostfix(float prog, CompOilDerrick __instance)
         {
+            float curProg = prog;
+            if (DrillModInit.settings.consistentDrillConfiguration == true)
+            {
+                curProg = DrillModInit.settings.consistentSpeedBaseFactor;
+            }
             float multiplierSetting = DrillModInit.settings.drillSpeedMultiplier;
             float decimalMultiplier = multiplierSetting / 100;
-            float newProg =  (float) (__instance.DrillTicks + Math.Floor(__instance.DrillTicks * decimalMultiplier));
-            __instance.DrillTicks = newProg;
+            // Log.Message($"DrillTicks: {__instance.DrillTicks}, decimalMult: {decimalMultiplier}, prog: {curProg}");
+            // undo the previous
+            __instance.DrillTicks -= prog;
+            // then replace it with the new one
+            __instance.DrillTicks += (curProg * decimalMultiplier);
         }
     }
 }
