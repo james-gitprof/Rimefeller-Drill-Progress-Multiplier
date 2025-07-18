@@ -20,8 +20,8 @@ namespace RimeDrillSpeedMultiplier
         {
             Scribe_Values.Look(ref enableDrillConfiguration, "enableDrillConfiguration", defaultValue: true);
             Scribe_Values.Look(ref drillSpeedMultiplier, "drillSpeedMultiplier", defaultValue: 100f);
-            Scribe_Values.Look(ref consistentDrillConfiguration, "consistentDrillConfiguration", true);
-            Scribe_Values.Look(ref consistentSpeedBaseFactor, "consistentSpeedBaseFactor", 1f);
+            Scribe_Values.Look(ref consistentDrillConfiguration, "consistentDrillConfiguration", defaultValue: true);
+            Scribe_Values.Look(ref consistentSpeedBaseFactor, "consistentSpeedBaseFactor", defaultValue: 1f);
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

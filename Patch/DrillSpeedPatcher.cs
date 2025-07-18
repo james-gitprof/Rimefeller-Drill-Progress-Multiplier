@@ -21,7 +21,7 @@ namespace RimeDrillSpeedMultiplier.Patch
             }
             float multiplierSetting = DrillModInit.settings.drillSpeedMultiplier;
             float decimalMultiplier = multiplierSetting / 100;
-            Log.Message($"DrillTicks: {__instance.DrillTicks}, decimalMult: {decimalMultiplier}, prog: {curProg}");
+            // Log.Message($"DrillTicks: {__instance.DrillTicks}, decimalMult: {decimalMultiplier}, prog: {curProg}");
             // undo the previous
             __instance.DrillTicks -= prog;
             // then replace it with the new one
