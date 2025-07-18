@@ -27,18 +27,5 @@ namespace RimeDrillSpeedMultiplier
         {
             ModInfo.modHarmony.Unpatch(original, patch);
         }
-
-        public static bool CheckPatchExists()
-        {
-            IEnumerable<MethodBase> myPatches = ModInfo.modHarmony.GetPatchedMethods();
-            foreach (MethodBase patch in myPatches)
-            {
-                if (patch.DeclaringType == typeof(DrillSpeedPatcher) && patch.Name == PATCH_METHOD_NAME) 
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 }

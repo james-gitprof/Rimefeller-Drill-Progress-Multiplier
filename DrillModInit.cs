@@ -47,31 +47,15 @@ namespace RimeDrillSpeedMultiplier
 
             if (settings.enableDrillConfiguration == true)
             {
-                if (settings.previousIsDrillConfigEnabled == true)
-                {
-                    Log.Message(ModLogMessages.MESSAGE_PATCH_ALREADY_ACTIVE);
-                } else
-                {
                     Log.Message(ModLogMessages.MESSAGE_PATCH_ACTIVE);
                     PatchManager.ApplyPatch();
-                }
-
             }
 
             if (settings.enableDrillConfiguration == false)
             {
-                if (settings.previousIsDrillConfigEnabled == false)
-                {
-                    Log.Message(ModLogMessages.MESSAGE_PATCH_ALREADY_INACTIVE);
-                } else
-                {
                     Log.Message(ModLogMessages.MESSAGE_PATCH_INACTIVE);
                     PatchManager.WithdrawPatch();
-                }
-             
             }
-
-            settings.previousIsDrillConfigEnabled = settings.enableDrillConfiguration;
         }
 
         public override string SettingsCategory()
